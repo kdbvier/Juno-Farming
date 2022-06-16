@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import useWindowSize from "../../hook/useWindowSize";
+// import useWindowSize from "../../hook/useWindowSize";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import useContract, { contractAddresses } from "../../hook/useContract";
 
@@ -27,15 +27,14 @@ const Main: React.FC = () => {
   const [ownedNFTs, setOwnedNFTs] = useState([]);
   const [currentTime, setCurrentTime] = useState(Number(new Date()));
   const [unStakingPeriod, setUnstakingPeriod] = useState(0);
-  const [totalStaked, setTotalStaked] = useState(0);
   const [youStaked, setYouStaked] = useState(0);
   const [rewardAmount, setRewardAmount] = useState(0);
   const [rewardAddress, setRewardAddress] = useState("");
   const [claimable, setClaimable] = useState(0);
-  const { isMobile } = useWindowSize(1000);
-  const [owner, setOwner] = useState("");
-  const [balance, setBalance] = useState(0);
-  const output = useAppSelector((state) => state.console.output);
+  // const { isMobile } = useWindowSize(1000);
+  // const [owner, setOwner] = useState("");
+  // const [balance, setBalance] = useState(0);
+  // const output = useAppSelector((state) => state.console.output);
   const account = useAppSelector((state) => state.accounts.keplrAccount);
 
   const mintContract = useAppSelector(
@@ -87,9 +86,9 @@ const Main: React.FC = () => {
     const stakingStateInfo = await runQuery(stakingContract, {
       get_state_info: {},
     });
+    console.log(stakingStateInfo);
     setRewardAddress(stakingStateInfo?.reward_wallet || "");
     setUnstakingPeriod(stakingStateInfo?.staking_period || 0);
-    setTotalStaked(Number(stakingStateInfo?.total_staked) || 0);
   };
   const handleChangeRewardAmount = (e: any) => {
     const {
@@ -216,18 +215,19 @@ const Main: React.FC = () => {
           ))}
         </Wrapper>
       </SubArea>
-      {account?.address === rewardAddress && (
-        <GetRewardArea>
-          <Input
-            type="number"
-            value={rewardAmount}
-            onChange={handleChangeRewardAmount}
-          />
-          <StyledButton onClick={handleDistributeRewards}>
-            Distribute
-          </StyledButton>
-        </GetRewardArea>
-      )}
+      {/* {account?.address === rewardAddress && ( */}
+      <GetRewardArea>
+        <Input
+          type="number"
+          value={rewardAmount}
+          onChange={handleChangeRewardAmount}
+          min="0"
+        />
+        <StyledButton onClick={handleDistributeRewards}>
+          Distribute
+        </StyledButton>
+      </GetRewardArea>
+      {/* )} */}
       <ButtonArea>
         <Flex style={{ justifyContent: "space-between" }}>
           <ButtonWrapper>
@@ -249,7 +249,7 @@ const Main: React.FC = () => {
             <StyledButton>Stake</StyledButton>
             <div
               style={{ fontSize: "25px", fontWeight: "800" }}
-            >{`${youStaked}/${totalStaked}`}</div>
+            >{`${youStaked}/${mintedNfts}`}</div>
           </ButtonWrapper>
         </Flex>
       </ButtonArea>
