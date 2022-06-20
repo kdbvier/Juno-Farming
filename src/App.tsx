@@ -4,7 +4,7 @@ import "@shoelace-style/shoelace/dist/themes/light.css";
 import { setBasePath } from "@shoelace-style/shoelace/dist/utilities/base-path";
 import { ToastContainer } from "react-toastify";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import Main from "./pages/Main";
 import useContract from "./hook/useContract";
 import { useAppDispatch, useAppSelector } from "./app/hooks";

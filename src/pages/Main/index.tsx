@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 // import useWindowSize from "../../hook/useWindowSize";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppSelector } from "../../app/hooks";
 import useContract, { contractAddresses } from "../../hook/useContract";
 
 import NFTItem from "../../components/NFTItem";

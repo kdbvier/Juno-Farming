@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import { toast } from "react-toastify";
 import useContract, { contractAddresses } from "../../hook/useContract";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppSelector } from "../../app/hooks";
 import { formatDurationTime } from "../../util/formatTime";
 import { NFTItemWrapper, StyledButton } from "./styled";
 
@@ -35,9 +35,9 @@ export default function NFTItem({
 }: NFTItemProps) {
   const [sendingTx, setSendingTx] = useState(false);
   const { runExecute } = useContract();
-  const nftContract = useAppSelector(
-    (state) => state.accounts.accountList[contractAddresses.NFT_CONTRACT]
-  );
+  // const nftContract = useAppSelector(
+  //   (state) => state.accounts.accountList[contractAddresses.NFT_CONTRACT]
+  // );
   const stakingContract = useAppSelector(
     (state) => state.accounts.accountList[contractAddresses.STAKING_CONTRACT]
   );
