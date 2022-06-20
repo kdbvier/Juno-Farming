@@ -96,6 +96,7 @@ const Main: React.FC = () => {
     } = e;
     setRewardAmount(value);
   };
+  console.log("rewardAmount: ", rewardAmount);
   const handleDistributeRewards = async () => {
     if (!account || rewardAmount <= 0) return;
 
