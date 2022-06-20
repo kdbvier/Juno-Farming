@@ -15,11 +15,11 @@ import { toMicroAmount } from "../util/coins";
 
 export const contractAddresses: any = {
   MINT_CONTRACT:
-    "juno15gw3ts40qn4vtlcusa4d0j687tjrzglg6csvd9hhrlkvfj7aml8sdczmex",
+    "juno1724gaheqp34h25ul8n7vl7rur8krdd02hyn5p4hlt065x7yuuwnsxjqqe5",
   STAKING_CONTRACT:
-    "juno1a9lgxe05kgse2pspnded2pcqe35x9veg2s8090kmasc7pz2r86psa9879n",
+    "juno19cc3f24hmmtd0tedrjwzw7xs6d9wyatcevx28ulcj84sut5xh4yqw82qqf",
   NFT_CONTRACT:
-    "juno19329hug3wehumtuan3cqfj8l6s4yksh9gnwykhh62wlcscf7s8csgaecxz"
+    "juno1smtyfg7036ds982x94l543gwj7f0fky73hjtvxdpf83m0t0f86sstr3pal"
 };
 
 const useContract = () => {

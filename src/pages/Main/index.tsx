@@ -16,7 +16,6 @@ import {
   GetRewardArea,
   Input,
 } from "./styled";
-import { useKeplr } from "../../features/accounts/useKeplr";
 
 const Main: React.FC = () => {
   const { runQuery, runExecute } = useContract();
@@ -27,10 +26,11 @@ const Main: React.FC = () => {
   const [ownedNFTs, setOwnedNFTs] = useState([]);
   const [currentTime, setCurrentTime] = useState(Number(new Date()));
   const [unStakingPeriod, setUnstakingPeriod] = useState(0);
-  const [youStaked, setYouStaked] = useState(0);
+  const [totalStaked, setTotalStaked] = useState(0);
   const [rewardAmount, setRewardAmount] = useState(0);
   const [rewardAddress, setRewardAddress] = useState("");
   const [claimable, setClaimable] = useState(0);
+  const [loading, setLoading] = useState(false);
   // const { isMobile } = useWindowSize(1000);
   // const [owner, setOwner] = useState("");
   // const [balance, setBalance] = useState(0);
@@ -46,12 +46,14 @@ const Main: React.FC = () => {
   const stakingContract = useAppSelector(
     (state) => state.accounts.accountList[contractAddresses.STAKING_CONTRACT]
   );
-  const { connect } = useKeplr();
+  // const { connect } = useKeplr();
   const fetchState = async () => {
+    console.log("info", account, mintContract);
     if (!account || !mintContract) return;
     const mintResult = await runQuery(mintContract, {
       get_state_info: {},
     });
+    console.log("mintResult: ", mintResult);
     setMaxNfts(Number(mintResult.total_nft));
     setMintedNfts(Number(mintResult.count));
     setCheckMintArray(mintResult.check_mint);
@@ -78,7 +80,6 @@ const Main: React.FC = () => {
         address: account.address,
       },
     });
-    setYouStaked(stakedTokens.length);
     const genStakedTokens = stakedTokens.map((doc: any) => {
       return { id: doc.token_id, item: doc };
     });
@@ -89,6 +90,7 @@ const Main: React.FC = () => {
     console.log(stakingStateInfo);
     setRewardAddress(stakingStateInfo?.reward_wallet || "");
     setUnstakingPeriod(stakingStateInfo?.staking_period || 0);
+    setTotalStaked(Number(stakingStateInfo?.total_staked));
   };
   const handleChangeRewardAmount = (e: any) => {
     const {
@@ -106,9 +108,7 @@ const Main: React.FC = () => {
       await runExecute(
         stakingContract.address,
         {
-          distribute_reward: {
-            token_balance: "0",
-          },
+          distribute_reward: {},
         },
         { funds: "" + rewardAmount }
       );
@@ -130,8 +130,6 @@ const Main: React.FC = () => {
       return null;
     });
     setClaimable(totalReward);
-    console.log("ownedNFTs: ", ownedNFTs);
-    console.log("stakedNFTIds: ", stakedNFTIds);
     if (stakedNFTIds.length === 0) {
       toast.error("Nothing To Claim");
       return;
@@ -167,14 +165,16 @@ const Main: React.FC = () => {
   }, [account]);
 
   const mint = async () => {
-    console.log("here");
+    setLoading(true);
     if (!mintContract) {
       toast.error("Mint contract not found!");
+      setLoading(false);
       return;
     }
     console.log(maxNfts, mintedNfts);
     if (maxNfts <= mintedNfts) {
       toast.error("All nfts are minted!");
+      setLoading(false);
       return;
     }
     let mintIndexArray: number[] = [];
@@ -191,8 +191,11 @@ const Main: React.FC = () => {
         funds: price,
       });
       toast.success("Success!");
+      fetchNFT();
+      setLoading(false);
     } catch (err) {
       console.error(err);
+      setLoading(false);
       toast.error("Fail!");
     }
   };
@@ -216,24 +219,26 @@ const Main: React.FC = () => {
           ))}
         </Wrapper>
       </SubArea>
-      {/* {account?.address === rewardAddress && ( */}
-      <GetRewardArea>
-        <Input
-          type="number"
-          value={rewardAmount}
-          onChange={handleChangeRewardAmount}
-          min="0"
-        />
-        <StyledButton onClick={handleDistributeRewards}>
-          Distribute
-        </StyledButton>
-      </GetRewardArea>
-      {/* )} */}
+      {account?.address === rewardAddress && (
+        <GetRewardArea>
+          <Input
+            type="number"
+            value={rewardAmount}
+            onChange={handleChangeRewardAmount}
+            min="0"
+          />
+          <StyledButton onClick={handleDistributeRewards}>
+            Distribute
+          </StyledButton>
+        </GetRewardArea>
+      )}
       <ButtonArea>
         <Flex style={{ justifyContent: "space-between" }}>
           <ButtonWrapper>
             <div>1 Mint = 8 Juno (max 20)</div>
-            <StyledButton onClick={mint}>Mint</StyledButton>
+            <StyledButton onClick={mint} disabled={loading}>
+              Mint
+            </StyledButton>
             <div
               style={{ fontSize: "25px", fontWeight: "800" }}
             >{`${mintedNfts}/${maxNfts}`}</div>
@@ -247,10 +252,10 @@ const Main: React.FC = () => {
           </ButtonWrapper>
           <ButtonWrapper>
             <div>Unstake Period 21 Days</div>
-            <StyledButton>Stake</StyledButton>
+            <StyledButton disabled={true}>Stake</StyledButton>
             <div
               style={{ fontSize: "25px", fontWeight: "800" }}
-            >{`${youStaked}/${mintedNfts}`}</div>
+            >{`${totalStaked}/${mintedNfts}`}</div>
           </ButtonWrapper>
         </Flex>
       </ButtonArea>

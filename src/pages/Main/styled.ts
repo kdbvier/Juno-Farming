@@ -12,11 +12,19 @@ export const Wrapper = styled.div`
   min-height: calc(100vh - 82px - 53px - 155px - 50px - 100px);
 
   @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
     padding: 50px;
+    align-items: center;
+    justify-content: center;
     min-height: calc(100vh - 82px - 53px - 50px - 50px - 100px);
   }
   @media (max-width: 425px) {
+    display: flex;
     padding: 50px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     min-height: calc(100vh - 82px - 53px - 50px - 50px - 140px);
   }
 `;
@@ -130,6 +138,9 @@ export const GetRewardArea = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
 `
 
 export const Input = styled.input`

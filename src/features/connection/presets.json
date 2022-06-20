@@ -1,11 +1,12 @@
 {
   "juno-mainnet": {
-    "chainName": "Juno Testnet - Unit",
-    "chainId": "uni-3",
-    "rpcEndpoint": "https://rpc.uni.juno.deuslabs.fi",
-    "restEndpoint": "https://lcd.uni.juno.deuslabs.fi",
+    "chainName": "Juno Mainnet",
+    "chainId": "juno-1",
+    "rpcEndpoint": "https://rpc-juno.itastakers.com/",
+    "restEndpoint": "https://lcd-juno.itastakers.com/",
+    "faucetEndpoint": "",
     "addressPrefix": "juno",
-    "microDenom": "ujunox",
+    "microDenom": "ujuno",
     "coinDecimals": "6",
     "gasPrice": "0.025"
   },
