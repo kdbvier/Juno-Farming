@@ -129,7 +129,7 @@ const Main: React.FC = () => {
       }
       return null;
     });
-    setClaimable(totalReward);
+    setClaimable(totalReward / 1000000);
     if (stakedNFTIds.length === 0) {
       toast.error("Nothing To Claim");
       return;
