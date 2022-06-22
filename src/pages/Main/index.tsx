@@ -167,13 +167,13 @@ const Main: React.FC = () => {
   const mint = async () => {
     setLoading(true);
     if (!mintContract) {
-      toast.error("Mint contract not found!");
+      // toast.error("Mint contract not found!");
       setLoading(false);
       return;
     }
     console.log(maxNfts, mintedNfts);
     if (maxNfts <= mintedNfts) {
-      toast.error("All nfts are minted!");
+      // toast.error("All nfts are minted!");
       setLoading(false);
       return;
     }
@@ -203,6 +203,7 @@ const Main: React.FC = () => {
     console.log("staking button clicked");
     fetchNFT();
   };
+
   return (
     <Container>
       <SubArea>
