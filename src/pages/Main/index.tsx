@@ -69,7 +69,7 @@ const Main: React.FC = () => {
       tokens: {
         owner: account.address,
         start_after: undefined,
-        limit: undefined,
+        limit: 25,
       },
     });
     const genTokens = tokens.tokens.map((doc: string) => {
@@ -174,6 +174,11 @@ const Main: React.FC = () => {
     console.log(maxNfts, mintedNfts);
     if (maxNfts <= mintedNfts) {
       // toast.error("All nfts are minted!");
+      setLoading(false);
+      return;
+    }
+    if (ownedNFTs.length > 20) {
+      toast.error("You can't mint any more.");
       setLoading(false);
       return;
     }
