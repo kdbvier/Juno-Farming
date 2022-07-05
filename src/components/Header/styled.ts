@@ -96,3 +96,9 @@ export const LogoWrapper = styled.div`
   font-size: 36px;
   font-weight: bold;
 `
+
+export const StyledSpan = styled.span`
+  font-size: 30px;
+  margin: 10px;
+  font-weight: bold;
+`

@@ -16,6 +16,7 @@ import {
   // MenuItem,
   MoreButton,
   LogoWrapper,
+  StyledSpan,
 } from "./styled";
 
 const Header: React.FC = () => {
@@ -71,49 +72,54 @@ const Header: React.FC = () => {
       </div>
       <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton>
-          <Modal.Title>Read Me</Modal.Title>
+          <Modal.Title>WHITEPAPER</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p style={{ fontSize: "20px" }}>
-            JunoFarming wants to be a community driven project.
+            JunoFarming aims to be a community driven project.
+            <br /> This means that anyone involved with the project is free to
+            express their own opinions and ideas. We want to build something
+            solid with and for you, which allows everyone to trade while earning
+            passive income. <br />
+            By trusting JunoFarming team through the sale and the trading of the
+            first NFT collection we are already achieving it. <br />
+            <StyledSpan>How it works?</StyledSpan>
             <br />
-            This means that anyone inside the project is free to express their
-            ideas.
+            50% of each new mint or trade goes into a wallet dedicated to
+            rewarding stakers. <br />
+            Those rewards will then be divided equally amongst stakers.
             <br />
-            We want to build something solid with you, which allows everyone to
-            trade while making money.
+            For example, if there are 200 staked and that day there were mint
+            and trades worth a total of 200 $JUNO, then earnings will be 1 $JUNO
+            per staked NFT.
+            <br /> If someone staked 5 NFTs then his/hers daily claim will be 5
+            $JUNO(5x1) for the current day. <br />
+            As soon as the first collection is sold out, every staker will earn
+            from the trading volume of the 1st collection in the marketplace
+            based on the same system(50/50).
+            <br /> We are currently working on the second collection which will
+            be released really soon! Additionally, stakers of the 1st collection
+            will start earning from the minting and trading of the 2nd
+            collection.
             <br />
-            The first step is to trust us, through the sale, the trading of the
-            first NFT collection.
+            <StyledSpan>Airdrop Info:</StyledSpan>
             <br />
-            How it works?When the first mint is done , the buyer will be able to
-            stake the NFT.
+            The first 500 stakers of the 1st collection will be airdropped 1 NFT
+            from the 2nd collection! 1 NFT for each NFT staked!! For example, if
+            you own and stake 10 JunoFarming NFTs, you will be airdropped 10
+            NFTs from the 2nd collection! Whoever's not staking or entered late
+            after the 500 mints, will have to buy the NFTs of the 2nd collection
+            using .<br />
+            <StyledSpan>ATTENTION</StyledSpan>
+            <br /> If someone didn't stake JunoFarming NFTs, or unstake for any
+            reason, won't be able to earn rewards.
+            <br /> Moreover, every buyer will have the chance to own and stake
+            up to 20 JunoFarming NFTs(maximum per wallet), consequently the more
+            NFT you stake the more you earn.
             <br />
-            The staker then will take from the second mint 50% of price.
-            <br />
-            Now then the second one is able too to stake the NFT , then when the
-            third mint is done the first and the second staker will take 50% of
-            price of the third NFT,that means 25% for the first one and 25% for
-            the second one.
-            <br />
-            So will work until all NFT are sold.When then the collection we be
-            sold out every stakers will earn from the trading in the marketplace
-            with the same system.
-            <br />
-            But pay attention if you didn't staked your NFT you will not be able
-            to earn, and also if you will make an unstake of your NFT.
-            <br />
-            Other important thing is that every buyer will be able to stake up
-            20 NFT , more NFT you stake more you will earn.
-            <br />
-            20 nft is the maximum a person can have in the walletSecondly we
-            would like to create a second nft collection, and the first 500
-            stakers of the first one will receive 1 nft of the second collection
-            for free!Who up to that moment has not staked or has entered late
-            will then have to buy the nft of the second collection.
-            <br />
-            As already mentioned it is a community driven project, so come
-            forward and propose your ideas and we will realize them together!
+            As previously mentioned, JunoFarming is a community driven project,
+            so step forward, discuss and propose your ideas, and we can work
+            together towards success! Thanks for your time
           </p>
         </Modal.Body>
       </Modal>
