@@ -114,8 +114,7 @@ const Header: React.FC = () => {
             <StyledSpan>ATTENTION</StyledSpan>
             <br /> If someone didn't stake JunoFarming NFTs, or unstake for any
             reason, won't be able to earn rewards.
-            <br /> Moreover, every buyer will have the chance to own and stake
-            up to 20 JunoFarming NFTs(maximum per wallet), consequently the more
+            <br /> Moreover, every buyer will have the chance to mint 20 JunoFarming NFTs(maximum per wallet), consequently the more
             NFT you stake the more you earn.
             <br />
             As previously mentioned, JunoFarming is a community driven project,
