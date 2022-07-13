@@ -85,6 +85,7 @@ const Header: React.FC = () => {
             first NFT collection we are already achieving it. <br />
             <StyledSpan>How it works?</StyledSpan>
             <br />
+            Rewards will be distributed for the first 21 days daily, after 21 days they will be weekly
             50% of each new mint or trade goes into a wallet dedicated to
             rewarding stakers. <br />
             Those rewards will then be divided equally amongst stakers.
